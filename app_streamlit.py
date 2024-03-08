@@ -49,7 +49,8 @@ warnings.filterwarnings("ignore")
 
 #     return paths, files, data
 
-@st.cache_data
+#@st.cache_data
+@st.cache
 def asegg(data,colormap):
     if colormap is not None:
          
@@ -156,7 +157,8 @@ if uploaded_files:
 imagenes_coloreadas = asegg(st.session_state.volumes['aseg'],st.session_state.text_content)
 
 
-@st.cache_data
+#@st.cache_data
+@st.cache
 def dataframe(data):
      
     stats_data = pd.read_csv(data, comment='#', delim_whitespace=True,
