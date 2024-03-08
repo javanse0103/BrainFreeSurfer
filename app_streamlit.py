@@ -240,37 +240,68 @@ def mostrar_cuatro_imagenes_rotadas(volumen, n_corte):
 ###################################################################
 
 
-col1, col2 = st.columns([0.20,0.80])
+#col1, col2 = st.columns([0.20,0.80])
 
 #####################################################################
 
-with col1:
+#with col1:
 
+ #   st.markdown("---")
+ #   st.markdown("Segmentations")
+ #   skullstrip = st.checkbox('Skull stripping')
+ #   wm_segmentation = st.checkbox("White matter segmentation")
+ #   if wm_segmentation:
+ #        opac_wm = st.slider("Opacity WM", 0.2, 0.7)
+ #   aseg_segmentation = st.checkbox("subcortical structures segmentation")
+ #   if aseg_segmentation:
+ #        opac_aseg = st.slider("Opacity aseg", 0.2, 0.7)
+ #   st.markdown("---")
+
+ #   st.markdown("Slices")
+ #   slice_axial = st.slider("Slices", 0, 255)
+
+#with col2:
+ #   col3, col4 = st.columns([0.8, 0.5])
+
+  #  with col3:
+   #     fig, axes = plt.subplots(2, 2, figsize=(10,10), constrained_layout=True)
+    #    st.pyplot(mostrar_cuatro_imagenes_rotadas(st.session_state.volumes['orig'], slice_axial))        
+
+    #with col4:
+     #   if st.session_state.stats is not None:
+      #      st.markdown("Volumes of subcortical structures")
+            #st.dataframe(dataframe(mri_data["stats"])[['StructName', 'Volume_mm3']],width=400, height=665)
+       #     st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']],width=400, height=665)
+            #st.dataframe(df.style.apply(apply_color, axis=1))
+
+# Columna principal 1
+col1 = st.columns([0.20])
+
+with col1:
     st.markdown("---")
     st.markdown("Segmentations")
     skullstrip = st.checkbox('Skull stripping')
     wm_segmentation = st.checkbox("White matter segmentation")
     if wm_segmentation:
-         opac_wm = st.slider("Opacity WM", 0.2, 0.7)
+        opac_wm = st.slider("Opacity WM", 0.2, 0.7)
     aseg_segmentation = st.checkbox("subcortical structures segmentation")
     if aseg_segmentation:
-         opac_aseg = st.slider("Opacity aseg", 0.2, 0.7)
+        opac_aseg = st.slider("Opacity aseg", 0.2, 0.7)
     st.markdown("---")
-
     st.markdown("Slices")
     slice_axial = st.slider("Slices", 0, 255)
 
-with col2:
-    col3, col4 = st.columns([0.8, 0.5])
+# Columnas principales 2 y 3 (anidadas dentro de una fila)
+row2 = st.container()
+
+with row2:
+    col2, col3 = st.columns([0.8, 0.5])
+
+    with col2:
+        fig, axes = plt.subplots(2, 2, figsize=(10, 10), constrained_layout=True)
+        st.pyplot(mostrar_cuatro_imagenes_rotadas(st.session_state.volumes['orig'], slice_axial))
 
     with col3:
-        fig, axes = plt.subplots(2, 2, figsize=(10,10), constrained_layout=True)
-        st.pyplot(mostrar_cuatro_imagenes_rotadas(st.session_state.volumes['orig'], slice_axial))        
-
-    with col4:
         if st.session_state.stats is not None:
             st.markdown("Volumes of subcortical structures")
-            #st.dataframe(dataframe(mri_data["stats"])[['StructName', 'Volume_mm3']],width=400, height=665)
-            st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']],width=400, height=665)
-            #st.dataframe(df.style.apply(apply_color, axis=1))
-
+            st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']], width=400, height=665)
