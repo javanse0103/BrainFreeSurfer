@@ -274,28 +274,32 @@ def mostrar_cuatro_imagenes_rotadas(volumen, n_corte):
        #     st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']],width=400, height=665)
             #st.dataframe(df.style.apply(apply_color, axis=1))
 
-# Columna principal 1
-col1, col2 = st.columns([0.20, 0.80])
+col1, col2, col3 = st.columns(3)
 
-col1.markdown("---")
-col1.markdown("Segmentations")
-skullstrip = col1.checkbox('Skull stripping')
-wm_segmentation = col1.checkbox("White matter segmentation")
-if wm_segmentation:
-    opac_wm = col1.slider("Opacity WM", 0.2, 0.7)
-aseg_segmentation = col1.checkbox("subcortical structures segmentation")
-if aseg_segmentation:
-    opac_aseg = col1.slider("Opacity aseg", 0.2, 0.7)
-col1.markdown("---")
-col1.markdown("Slices")
-slice_axial = col1.slider("Slices", 0, 255)
+# Contenido de la columna 1
+with col1:
+    st.markdown("---")
+    st.markdown("Segmentations")
+    skullstrip = st.checkbox('Skull stripping')
+    wm_segmentation = st.checkbox("White matter segmentation")
+    if wm_segmentation:
+        opac_wm = st.slider("Opacity WM", 0.2, 0.7)
+    aseg_segmentation = st.checkbox("subcortical structures segmentation")
+    if aseg_segmentation:
+        opac_aseg = st.slider("Opacity aseg", 0.2, 0.7)
+    st.markdown("---")
+    st.markdown("Slices")
+    slice_axial = st.slider("Slices", 0, 255)
 
-col3, col4 = col2.columns([0.8, 0.5])
+# Contenido de la columna 2
+with col2:
+    fig, axes = plt.subplots(2, 2, figsize=(10, 10), constrained_layout=True)
+    st.pyplot(mostrar_cuatro_imagenes_rotadas(st.session_state.volumes['orig'], slice_axial))
 
-fig, axes = plt.subplots(2, 2, figsize=(10, 10), constrained_layout=True)
-col3.pyplot(mostrar_cuatro_imagenes_rotadas(st.session_state.volumes['orig'], slice_axial))
+# Contenido de la columna 3
+with col3:
+    if st.session_state.stats is not None:
+        st.markdown("Volumes of subcortical structures")
+        st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']], width=400, height=665)
 
-if st.session_state.stats is not None:
-    col4.markdown("Volumes of subcortical structures")
-    col4.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']], width=400, height=665)
 
