@@ -274,7 +274,7 @@ def mostrar_cuatro_imagenes_rotadas(volumen, n_corte):
        #     st.dataframe(dataframe(st.session_state.stats)[['StructName', 'Volume_mm3']],width=400, height=665)
             #st.dataframe(df.style.apply(apply_color, axis=1))
 
-col1, col2, col3 = st.columns([1, 3, 1])
+col1, col2, col3 = st.columns([1, 3, 2])
 
 # Contenido de la columna 1
 with col1:
