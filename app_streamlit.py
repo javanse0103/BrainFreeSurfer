@@ -2,7 +2,7 @@ import streamlit as st
 import nibabel as nib
 import numpy as np 
 import os
-from streamlit_image_select import image_select
+#from streamlit_image_select import image_select
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import pandas as pd
