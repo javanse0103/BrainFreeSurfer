@@ -261,7 +261,7 @@ with col1:
     slice_axial = st.slider("Slices", 0, 255)
 
 with col2:
-    col3, col4 = st.columns([0.8, 0.5], gap="large")
+    col3, col4 = st.columns([0.8, 0.5])
 
     with col3:
         fig, axes = plt.subplots(2, 2, figsize=(10,10), constrained_layout=True)
