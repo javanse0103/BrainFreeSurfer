@@ -240,7 +240,7 @@ def mostrar_cuatro_imagenes_rotadas(volumen, n_corte):
 ###################################################################
 
 
-col1, col2, col3 = st.columns([2, 3, 2])
+col1, col2, col3 = st.columns([2, 4, 2])
 
 # Contenido de la columna 1
 with col1:
